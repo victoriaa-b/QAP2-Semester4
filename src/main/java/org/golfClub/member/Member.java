@@ -97,7 +97,7 @@ public class Member {
         return memberStartDate;
     }
 
-    public void setMemberStartDate(String memberStartDate {
+    public void setMemberStartDate(String memberStartDate){
         this.memberStartDate = memberStartDate;
     }
 
