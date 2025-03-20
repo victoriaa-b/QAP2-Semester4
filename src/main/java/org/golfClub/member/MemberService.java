@@ -22,6 +22,10 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
+    public Member addMember(Member newMember) {
+        return memberRepository.save(newMember);
+    }
+
     public void deleteMemberById(Long id) {
         memberRepository.deleteById(id);
     }
@@ -35,7 +39,7 @@ public class MemberService {
         return memberRepository.findByFirstName(firstName);
     }
 
-    public List<Member> getMembersBylasttName(String lastName) {
+    public List<Member> getMembersByLastName(String lastName) {
         return memberRepository.findByLastName(lastName);
     }
 
