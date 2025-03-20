@@ -17,7 +17,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    // Id - might be more
+    // Id - might be more - check
     public Optional<Member> getMemberByMemberId(Long id) {
         return memberRepository.findById(id);
     }
@@ -41,6 +41,14 @@ public class MemberService {
 
     public List<Member> getMembersByFullName(String firstName, String lastName) {
         return memberRepository.findByFullName(firstName, lastName);
+    }
+
+    public List<Member> getMembersByPhoneNumber(String phoneNumber) {
+        return memberRepository.findByPhoneNumber(phoneNumber);
+    }
+
+    public List<Member> getMembersByStartDate(String memberStartDate) {
+        return memberRepository.findByMemberStartDate(memberStartDate);
     }
 
 }
