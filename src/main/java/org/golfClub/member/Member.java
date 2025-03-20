@@ -109,5 +109,15 @@ public class Member {
         this.membershipLength = membershipLength;
     }
 
+    // add and get new members and tournaments
+    // add members to tournaments
+    public Set<Tournament> getTournaments() {
+        return tournaments;
+    }
+
+    public void setTournaments(Set<Tournament> tournaments) {
+        this.tournaments = tournaments;
+    }
+
 
 }

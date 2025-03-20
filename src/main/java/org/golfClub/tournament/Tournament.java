@@ -100,4 +100,14 @@ public class Tournament {
     public void setParticipants(Set<Member> participants) {
         this.participants = participants;
     }
+
+    public void addParticipant(Member member) {
+        this.participants.add(member);
+        member.getTournaments().add(this);
+    }
+
+    public void removeParticipant(Member member) {
+        this.participants.remove(member);
+        member.getTournaments().remove(this);
+    }
 }
