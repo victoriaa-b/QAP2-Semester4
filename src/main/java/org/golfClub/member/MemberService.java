@@ -31,8 +31,8 @@ public class MemberService {
         return memberRepository.findByPhoneNum(phoneNum);
     }
 
-    public List<Member> getMembersByStartDate(LocalDate memberStartDate) {
-        return memberRepository.findByMembershipStartDate(memberStartDate);
+    public List<Member> getMembersByStartDate(LocalDate startDate) {
+        return memberRepository.findByMemberStartDate(startDate);
     }
 
     public List<Member> getMembersByTournamentStartDate(LocalDate tournamentStartDate) {

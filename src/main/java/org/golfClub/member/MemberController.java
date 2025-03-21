@@ -39,10 +39,10 @@ public class MemberController {
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-    @GetMapping("/search/start-date/{memberStartDate}")
+    @GetMapping("/search/start-date")
     public ResponseEntity<List<Member>> findByMemberStartDate(
-            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate memberStartDate) {
-        List<Member> members = memberService.getMembersByStartDate(memberStartDate);
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate) {
+        List<Member> members = memberService.getMembersByStartDate(startDate);
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
