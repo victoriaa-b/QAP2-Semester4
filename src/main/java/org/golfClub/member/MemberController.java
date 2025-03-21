@@ -3,21 +3,27 @@ package org.golfClub.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/members")
 public class MemberController {
 
-    @Autowired
     private final MemberService memberService;
 
     @Autowired
     public MemberController(MemberService memberService){
         this.memberService = memberService;
+    }
+
+    // find all members
+    @GetMapping("/allMembers")
+    public List<Member> getAllMembers() {
+        return memberService.findAll();
     }
 
     @PostMapping
@@ -26,44 +32,32 @@ public class MemberController {
         return new ResponseEntity<>(savedMember, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteMember(@PathVariable Long id) {
-        if (!memberService.checkIfMemberExist(id)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        memberService.deleteMemberById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Member> getMemberByTheirId(@PathVariable Long id) {
-        Optional<Member> member = memberService.getMemberByMemberId(id);
-        return member.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    // Name
-    @GetMapping("/search/firstname/{firstName}")
-    public ResponseEntity<List<Member>> findByFirstName(@PathVariable String firstName) {
-        List<Member> members = memberService.getMembersByFirstName(firstName);
+    @GetMapping("/search/phone/{phoneNum}")
+    public ResponseEntity<List<Member>> findByPhoneNumber(@PathVariable String phoneNum) {
+        List<Member> members = memberService.getMembersByPhoneNumber(phoneNum);
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-    @GetMapping("/search/lastname/{lastName}")
-    public ResponseEntity<List<Member>> findByLastName(@PathVariable String lastName) {
-        List<Member> members = memberService.getMembersByLastName(lastName);
+    @GetMapping("/search/start-date/{memberStartDate}")
+    public ResponseEntity<List<Member>> findByMemberStartDate(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate memberStartDate) {
+        List<Member> members = memberService.getMembersByStartDate(memberStartDate);
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-    // check to see if it takes two
-    @GetMapping("/search/fullName")
-    public ResponseEntity<List<Member>> findByFullName(@RequestParam String firstName, @RequestParam String lastName) {
-        List<Member> members = memberService.getMembersByFullName(firstName, lastName);
+    // took out first and last name
+    @GetMapping("/search/name/{name}")
+    public ResponseEntity<List<Member>> findByName(@PathVariable String name) {
+        List<Member> members = memberService.getMembersByName(name);
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-
-
-
-
+    // changed from string to local date
+    @GetMapping("/search/tournament-start-date/{tournamentStartDate}")
+    public ResponseEntity<List<Member>> findByTournamentStartDate(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate tournamentStartDate) {
+        List<Member> members = memberService.getMembersByTournamentStartDate(tournamentStartDate);
+        return new ResponseEntity<>(members, HttpStatus.OK);
+    }
 }

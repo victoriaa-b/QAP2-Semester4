@@ -1,7 +1,9 @@
 package org.golfClub.member;
+import org.apache.tomcat.jni.Local;
 import org.golfClub.tournament.Tournament;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,20 +14,15 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-
-    @Column
-    private String firstName;
-    @Column
-    private String lastName;
+    private String name;
     private String email;
     private String phoneNum;
     private String address;
     @Column
-    private String memberStartDate; // could be date?
+    private LocalDate memberStartDate; // could be date?
     @Column
     private int membershipLength;
 
-    // CHECK ON THIS
     @ManyToMany(mappedBy = "participants")
     private Set<Tournament> tournaments = new HashSet<>();
 
@@ -34,9 +31,8 @@ public class Member {
 
     }
 
-    public Member(String firstName, String lastName, String email, String phoneNum, String address, String memberStartDate, int membershipLength){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Member(String name, String email, String phoneNum, String address, LocalDate memberStartDate, int membershipLength){
+        this.name = name;
         this.email = email;
         this.address = address;
         this.phoneNum = phoneNum;
@@ -53,20 +49,11 @@ public class Member {
         this.id = id;
     }
 
-    public String getFirstName(){
-        return firstName;
+    public String getName(){
+        return name;
     }
-
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
-    }
-
-    public String getLastName(){
-        return lastName;
-    }
-
-    public void setLastName(String lastName){
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail(){
@@ -93,11 +80,11 @@ public class Member {
         this.phoneNum = phoneNum;
     }
 
-    public String getMemberStartDate() {
+    public LocalDate getMemberStartDate() {
         return memberStartDate;
     }
 
-    public void setMemberStartDate(String memberStartDate){
+    public void setMemberStartDate(LocalDate memberStartDate){
         this.memberStartDate = memberStartDate;
     }
 

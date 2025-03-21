@@ -1,15 +1,18 @@
 package org.golfClub.member;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
-    List<Member> findByFirstName(String firstName);
-    List<Member> findByLastName(String lastName);
-    List<Member> findByFullName(String firstName, String lastName);
-    List<Member> findByPhoneNumber(String phoneNum);
-    List<Member> findByMemberStartDate(String memberStartDate);
+    List<Member> findByName(String name);
+    List<Member> findByPhoneNum(String phoneNum);
+    List<Member> findByMembershipStartDate(LocalDate startDate);
+    List<Member> findByTournamentsStartDate(LocalDate tournamentStartDate);
 }
+
