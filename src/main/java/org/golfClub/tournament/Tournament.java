@@ -14,9 +14,9 @@ public class Tournament {
 
     private Long id;
     @Column
-    private LocalDate startDate;
+    private LocalDate startDate; // changed from striing
     @Column
-    private LocalDate endDate;
+    private LocalDate endDate; // changed from string
     private String location;
     private double entryFee;
     private double cashPrizeAmt;
@@ -106,8 +106,4 @@ public class Tournament {
         member.getTournaments().add(this);
     }
 
-    public void removeParticipant(Member member) {
-        this.participants.remove(member);
-        member.getTournaments().remove(this);
-    }
 }

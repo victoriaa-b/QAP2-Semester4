@@ -1,7 +1,9 @@
 package org.golfClub.member;
+import org.apache.tomcat.jni.Local;
 import org.golfClub.tournament.Tournament;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +19,7 @@ public class Member {
     private String phoneNum;
     private String address;
     @Column
-    private String memberStartDate; // could be date?
+    private LocalDate memberStartDate; // could be date?
     @Column
     private int membershipLength;
 
@@ -29,7 +31,7 @@ public class Member {
 
     }
 
-    public Member(String name, String email, String phoneNum, String address, String memberStartDate, int membershipLength){
+    public Member(String name, String email, String phoneNum, String address, LocalDate memberStartDate, int membershipLength){
         this.name = name;
         this.email = email;
         this.address = address;
@@ -78,11 +80,11 @@ public class Member {
         this.phoneNum = phoneNum;
     }
 
-    public String getMemberStartDate() {
+    public LocalDate getMemberStartDate() {
         return memberStartDate;
     }
 
-    public void setMemberStartDate(String memberStartDate){
+    public void setMemberStartDate(LocalDate memberStartDate){
         this.memberStartDate = memberStartDate;
     }
 

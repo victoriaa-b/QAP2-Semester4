@@ -3,10 +3,11 @@ package org.golfClub.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/members")
@@ -19,6 +20,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+    // find all members
     @GetMapping("/allMembers")
     public List<Member> getAllMembers() {
         return memberService.findAll();
@@ -37,24 +39,25 @@ public class MemberController {
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-
     @GetMapping("/search/start-date/{memberStartDate}")
-    public ResponseEntity<List<Member>> findByMemberStartDate(@PathVariable String memberStartDate) {
+    public ResponseEntity<List<Member>> findByMemberStartDate(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate memberStartDate) {
         List<Member> members = memberService.getMembersByStartDate(memberStartDate);
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
+    // took out first and last name
     @GetMapping("/search/name/{name}")
     public ResponseEntity<List<Member>> findByName(@PathVariable String name) {
         List<Member> members = memberService.getMembersByName(name);
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
+    // changed from string to local date
     @GetMapping("/search/tournament-start-date/{tournamentStartDate}")
-    public ResponseEntity<List<Member>> findByTournamentStartDate(@PathVariable String tournamentStartDate) {
-        List<Member> members = memberService.findMembersByTournamentStartDate(tournamentStartDate);
+    public ResponseEntity<List<Member>> findByTournamentStartDate(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate tournamentStartDate) {
+        List<Member> members = memberService.getMembersByTournamentStartDate(tournamentStartDate);
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
-
-
 }

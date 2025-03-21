@@ -3,9 +3,8 @@ package org.golfClub.member;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-
 
 @Service
 public class MemberService {
@@ -24,21 +23,19 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    // String
     public List<Member> getMembersByName(String name) {
         return memberRepository.findByName(name);
     }
 
-
     public List<Member> getMembersByPhoneNumber(String phoneNum) {
-        return memberRepository.findByPhoneNum(phoneNum); // Correct method name here
+        return memberRepository.findByPhoneNum(phoneNum);
     }
 
-    public List<Member> getMembersByStartDate(String memberStartDate) {
-        return memberRepository.findByMemberStartDate(memberStartDate); // This one is correct too
+    public List<Member> getMembersByStartDate(LocalDate memberStartDate) {
+        return memberRepository.findByMembershipStartDate(memberStartDate);
     }
 
-    public List<Member> findMembersByTournamentStartDate(String tournamentStartDate) {
-        return memberRepository.findByTournamentStartDate(tournamentStartDate);
+    public List<Member> getMembersByTournamentStartDate(LocalDate tournamentStartDate) {
+        return memberRepository.findByTournamentsStartDate(tournamentStartDate);
     }
 }
