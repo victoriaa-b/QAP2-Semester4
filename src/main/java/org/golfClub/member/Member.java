@@ -19,7 +19,7 @@ public class Member {
     private String phoneNum;
     private String address;
     @Column
-    private LocalDate membershipStartDate; // could be date?
+    private LocalDate memberStartDate; // could be date?
     @Column
     private int membershipLength;
 
@@ -36,7 +36,7 @@ public class Member {
         this.email = email;
         this.address = address;
         this.phoneNum = phoneNum;
-        this.membershipStartDate = memberStartDate;
+        this.memberStartDate = memberStartDate;
         this.membershipLength = membershipLength;
     }
 
@@ -80,12 +80,12 @@ public class Member {
         this.phoneNum = phoneNum;
     }
 
-    public LocalDate getMembershipStartDate() {
-        return membershipStartDate;
+    public LocalDate getMemberStartDate() {
+        return memberStartDate;
     }
 
-    public void setMembershipStartDate(LocalDate membershipStartDate){
-        this.membershipStartDate = membershipStartDate;
+    public void setMemberStartDate(LocalDate memberStartDate){
+        this.memberStartDate = memberStartDate;
     }
 
     public int getMembershipLength() {
