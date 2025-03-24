@@ -20,12 +20,13 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    // find all members
+    // Find all members
     @GetMapping("/allMembers")
     public List<Member> getAllMembers() {
         return memberService.findAll();
     }
 
+    // Add new members
     @PostMapping
     public ResponseEntity<Member> addNewMember (@RequestBody Member member) {
         Member savedMember = memberService.addMember(member);
@@ -46,14 +47,13 @@ public class MemberController {
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-    // took out first and last name
+    // Find name
     @GetMapping("/search/name/{name}")
     public ResponseEntity<List<Member>> findByName(@PathVariable String name) {
         List<Member> members = memberService.getMembersByName(name);
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-    // changed from string to local date
     @GetMapping("/search/tournament-start-date/{tournamentStartDate}")
     public ResponseEntity<List<Member>> findByTournamentStartDate(
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate tournamentStartDate) {

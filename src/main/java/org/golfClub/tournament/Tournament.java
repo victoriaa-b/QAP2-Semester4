@@ -14,9 +14,9 @@ public class Tournament {
 
     private Long id;
     @Column
-    private LocalDate startDate; // changed from striing
+    private LocalDate startDate;
     @Column
-    private LocalDate endDate; // changed from string
+    private LocalDate endDate;
     private String location;
     private double entryFee;
     private double cashPrizeAmt;
@@ -92,7 +92,6 @@ public class Tournament {
         this.cashPrizeAmt = cashPrizeAmt;
     }
 
-    // Check this logic
     public Set<Member> getParticipants() {
         return participants;
     }

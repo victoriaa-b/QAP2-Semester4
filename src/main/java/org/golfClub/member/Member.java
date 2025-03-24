@@ -19,7 +19,8 @@ public class Member {
     private String email;
     private String phoneNum;
     private String address;
-    private LocalDate membershipStartDate; // could be date?
+    @Column
+    private LocalDate membershipStartDate;
     @Column
     private int membershipLength;
 
@@ -39,6 +40,7 @@ public class Member {
         this.membershipStartDate = membershipStartDate;
         this.membershipLength = membershipLength;
     }
+
 
     // Getters and Setters
     public Long getId(){
@@ -96,8 +98,6 @@ public class Member {
         this.membershipLength = membershipLength;
     }
 
-    // add and get new members and tournaments
-    // add members to tournaments
     public Set<Tournament> getTournaments() {
         return tournaments;
     }

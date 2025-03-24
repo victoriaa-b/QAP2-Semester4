@@ -42,20 +42,20 @@ public class TournamentController {
         return tournamentService.getTournamentByStartDate(startDate);
     }
 
-    // location
+
+    // find tournament by location
     @GetMapping("/search/location")
     public List<Tournament> getTournamentsByLocation(@RequestParam String location) {
         return tournamentService.getTournamentByLocation(location);
     }
 
- // find all?
     @GetMapping("/{tournamentId}/members")
     public Set<Member> getTournamentParticipants(@PathVariable Long tournamentId) {
         Tournament tournament = tournamentService.getTournamentByParticipantsAndId(tournamentId);
         return tournament.getParticipants();
     }
 
-   // add memeber to the tournament -  maybe do delete too?
+   // Add member to tournament
     @PostMapping("/{tournamentId}/members/{memberId}")
     public ResponseEntity<Tournament> addMemberToTournament(
             @PathVariable Long tournamentId,

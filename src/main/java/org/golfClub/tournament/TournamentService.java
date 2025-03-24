@@ -13,9 +13,8 @@ public class TournamentService {
 
     TournamentRepository tournamentRepository;
     private final MemberRepository memberRepository;
-    // start date
-    // location
-    // find tournament and participants
+
+
     @Autowired
     public TournamentService(TournamentRepository tournamentRepository, MemberRepository memberRepository) {
         this.tournamentRepository = tournamentRepository;
@@ -38,12 +37,11 @@ public class TournamentService {
         return tournamentRepository.save(tournament);
     }
 
-    // find all
+
     public List<Tournament> getAllTournaments() {
         return tournamentRepository.findAll();
     }
 
-    // double check to ensure IT WORKS logic
     public Tournament addMemberToTournament(Long tournamentId, Long memberId) {
         Tournament tournament = tournamentRepository.findById(tournamentId).orElse(null);
         Member member = memberRepository.findById(memberId).orElse(null);
