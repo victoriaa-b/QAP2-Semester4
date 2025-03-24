@@ -11,7 +11,7 @@ import java.util.List;
 public interface MemberRepository extends JpaRepository<Member, Long> {
     List<Member> findByName(String name);
     List<Member> findByPhoneNum(String phoneNum);
-    List<Member> findByMemberStartDate(LocalDate startDate);
+    List<Member> findByMembershipStartDate(LocalDate startDate);
     List<Member> findByTournamentsStartDate(LocalDate tournamentStartDate);
 }
 

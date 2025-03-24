@@ -40,9 +40,9 @@ public class MemberController {
     }
 
     @GetMapping("/search/start-date")
-    public ResponseEntity<List<Member>> findByMemberStartDate(
+    public ResponseEntity<List<Member>> findByMembershipStartDate(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate) {
-        List<Member> members = memberService.getMembersByStartDate(startDate);
+        List<Member> members = memberService.getMembershipByStartDate(startDate);
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 

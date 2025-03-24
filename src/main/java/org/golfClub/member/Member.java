@@ -1,5 +1,5 @@
 package org.golfClub.member;
-import org.apache.tomcat.jni.Local;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.golfClub.tournament.Tournament;
 
 import javax.persistence.*;
@@ -9,6 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "members")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +19,7 @@ public class Member {
     private String email;
     private String phoneNum;
     private String address;
-    @Column
-    private LocalDate memberStartDate; // could be date?
+    private LocalDate membershipStartDate; // could be date?
     @Column
     private int membershipLength;
 
@@ -31,12 +31,12 @@ public class Member {
 
     }
 
-    public Member(String name, String email, String phoneNum, String address, LocalDate memberStartDate, int membershipLength){
+    public Member(String name, String email, String phoneNum, String address, LocalDate membershipStartDate, int membershipLength){
         this.name = name;
         this.email = email;
         this.address = address;
         this.phoneNum = phoneNum;
-        this.memberStartDate = memberStartDate;
+        this.membershipStartDate = membershipStartDate;
         this.membershipLength = membershipLength;
     }
 
@@ -80,12 +80,12 @@ public class Member {
         this.phoneNum = phoneNum;
     }
 
-    public LocalDate getMemberStartDate() {
-        return memberStartDate;
+    public LocalDate getMembershipStartDate() {
+        return membershipStartDate;
     }
 
-    public void setMemberStartDate(LocalDate memberStartDate){
-        this.memberStartDate = memberStartDate;
+    public void setMembershipStartDate(LocalDate memberStartDate){
+        this.membershipStartDate = memberStartDate;
     }
 
     public int getMembershipLength() {
